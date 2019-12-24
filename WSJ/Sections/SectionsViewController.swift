@@ -12,6 +12,7 @@ class SectionsViewController: UIViewController {
     
     @IBOutlet weak var sectionTableView: UITableView!
      var sections: [Section] = []
+    var rowSelected = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,14 @@ class SectionsViewController: UIViewController {
         return finalSection
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "headlines segue" {
+            let destVC = HeadlinesViewController()
+            print("second: \(rowSelected)")
+            destVC.navBarTitle = rowSelected
+        }
+    }
+    
 }
 
 // MARK: UITableViewDataSource & UITableViewDelegate
@@ -61,6 +70,8 @@ extension SectionsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        print("first: \(sections[indexPath.row].title)")
+        self.rowSelected = sections[indexPath.row].title
         performSegue(withIdentifier: "headlines segue", sender: nil)
     }
 }
