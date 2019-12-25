@@ -11,10 +11,10 @@ import Foundation
 
 class WSJEndpoints {
     // URL(string: <#T##String#>, relativeTo: <#T##URL?#>)
-    let opinionRSS = URL(string: "https://feeds.a.dj.com/rss/RSSOpinion.xml")
-    let worldNewsRSS = URL(string: "https://feeds.a.dj.com/rss/RSSWorldNews.xml")
-    let usBusinessRSS = URL(string: "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml")
-    let marketNewsRSS = URL(string: "https://feeds.a.dj.com/rss/RSSMarketsMain.xml")
-    let technologyRSS = URL(string: "https://feeds.a.dj.com/rss/RSSWSJD.xml")
-    let lifestyleRSS = URL(string: "https://feeds.a.dj.com/rss/RSSLifestyle.xml")
+    let opinionRSS = "https://feeds.a.dj.com/rss/RSSOpinion.xml"
+    let worldNewsRSS = "https://feeds.a.dj.com/rss/RSSWorldNews.xml"
+    let usBusinessRSS = "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml"
+    let marketNewsRSS = "https://feeds.a.dj.com/rss/RSSMarketsMain.xml"
+    let technologyRSS = "https://feeds.a.dj.com/rss/RSSWSJD.xml"
+    let lifestyleRSS = "https://feeds.a.dj.com/rss/RSSLifestyle.xml"
 }

@@ -53,7 +53,8 @@ class FeedParser: NSObject, XMLParserDelegate {
 //            }
             
             guard let data = data else {
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
+//        TODO: implement alert controller
                 return
             }
             let parser = XMLParser(data: data)
@@ -106,6 +107,7 @@ class FeedParser: NSObject, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         print("Parse error: \(parseError.localizedDescription)")
+//        TODO: implement alert controller
     }
 }
 

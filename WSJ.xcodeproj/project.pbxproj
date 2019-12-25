@@ -21,6 +21,7 @@
 		4FC9D20123B2207400D9A6C5 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC9D20023B2207400D9A6C5 /* FeedParser.swift */; };
 		4FC9D20323B2593200D9A6C5 /* HeadlinesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC9D20223B2593200D9A6C5 /* HeadlinesTableViewCell.swift */; };
 		4FC9D20523B2595600D9A6C5 /* Headline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC9D20423B2595600D9A6C5 /* Headline.swift */; };
+		4FC9D20723B2DDAF00D9A6C5 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC9D20623B2DDAF00D9A6C5 /* ArticleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		4FC9D20023B2207400D9A6C5 /* FeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
 		4FC9D20223B2593200D9A6C5 /* HeadlinesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesTableViewCell.swift; sourceTree = "<group>"; };
 		4FC9D20423B2595600D9A6C5 /* Headline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Headline.swift; sourceTree = "<group>"; };
+		4FC9D20623B2DDAF00D9A6C5 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		4FC9D1F523B10EE200D9A6C5 /* Articles */ = {
 			isa = PBXGroup;
 			children = (
+				4FC9D20623B2DDAF00D9A6C5 /* ArticleViewController.swift */,
 			);
 			path = Articles;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				4FC9D1CB23AD277E00D9A6C5 /* AppDelegate.swift in Sources */,
 				4FC9D1FD23B18EE700D9A6C5 /* HeadlinesViewController.swift in Sources */,
 				4FC9D1FF23B18FFD00D9A6C5 /* WSJEndpoints.swift in Sources */,
+				4FC9D20723B2DDAF00D9A6C5 /* ArticleViewController.swift in Sources */,
 				4FC9D20323B2593200D9A6C5 /* HeadlinesTableViewCell.swift in Sources */,
 				4FC9D20123B2207400D9A6C5 /* FeedParser.swift in Sources */,
 				4FC9D1CD23AD277E00D9A6C5 /* SceneDelegate.swift in Sources */,

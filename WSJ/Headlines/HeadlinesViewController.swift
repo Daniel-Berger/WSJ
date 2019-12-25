@@ -11,7 +11,7 @@ import UIKit
 class HeadlinesViewController: UIViewController, XMLParserDelegate {
 
     @IBOutlet weak var headlinesTableView: UITableView!
-    var navBarTitle = String()
+    
     private var rssItems: [RSSItem]?
     
     override func viewDidLoad() {
@@ -19,17 +19,19 @@ class HeadlinesViewController: UIViewController, XMLParserDelegate {
         
         self.headlinesTableView.dataSource = self
         self.headlinesTableView.delegate = self
-        print("third: \(navBarTitle)")
-        urlTest()
+//        urlTest()
         
-//        fetchData(url: "https://developer.apple.com/news/rss/news.rss")
-        fetchData(url: "https://feeds.a.dj.com/rss/RSSOpinion.xml")
+        let wsjRssFeeds = WSJEndpoints()
+//        fetchData(url: wsjRssFeeds.lifestyleRSS)
+//        fetchData(url: wsjRssFeeds.opinionRSS)
+//        fetchData(url: wsjRssFeeds.worldNewsRSS)
+//        fetchData(url: wsjRssFeeds.usBusinessRSS)
+//        fetchData(url: wsjRssFeeds.marketNewsRSS)
+        fetchData(url: wsjRssFeeds.technologyRSS)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print("fourth: \(navBarTitle)")
-        self.navigationItem.title = navBarTitle
     }
     
     private func fetchData(url: String) {
@@ -41,9 +43,9 @@ class HeadlinesViewController: UIViewController, XMLParserDelegate {
             }
         }
     }
-    
+ 
+/*
     func urlTest() {
-        print("over here")
         let url = URL(string: "https://feeds.a.dj.com/rss/RSSOpinion.xml")!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -66,6 +68,7 @@ class HeadlinesViewController: UIViewController, XMLParserDelegate {
         }
         task.resume()
     }
+ */
 
 }
 
@@ -93,5 +96,6 @@ extension HeadlinesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "article segue", sender: nil)
     }
 }

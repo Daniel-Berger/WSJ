@@ -44,9 +44,7 @@ class SectionsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "headlines segue" {
-            let destVC = HeadlinesViewController()
-            print("second: \(rowSelected)")
-            destVC.navBarTitle = rowSelected
+            
         }
     }
     
@@ -70,8 +68,6 @@ extension SectionsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("first: \(sections[indexPath.row].title)")
-        self.rowSelected = sections[indexPath.row].title
         performSegue(withIdentifier: "headlines segue", sender: nil)
     }
 }
