@@ -13,17 +13,14 @@ class HeadlinesTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var pubDateLabel: UILabel!
-    
-//    func setupHeadline(headline: Headline) {
-//        titleLabel.text = headline.title
-//        descriptionLabel.text = headline.description
-//    }
+    @IBOutlet weak var linkLabel: UILabel!
     
     var item: RSSItem! {
         didSet {
             titleLabel.text = item.title
             descriptionLabel.text = item.description
             pubDateLabel.text = item.pubDate
+            linkLabel.text = item.link
         }
     }
 }

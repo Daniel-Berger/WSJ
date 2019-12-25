@@ -10,6 +10,7 @@ import UIKit
 
 struct RSSItem {
     var title: String
+    var link: String
     var description: String
     var pubDate: String
 }
@@ -33,6 +34,11 @@ class FeedParser: NSObject, XMLParserDelegate {
             currentPubDate = currentPubDate.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
+    private var currentLink: String = "" {
+        didSet {
+            currentLink = currentLink.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
     private var parserCompletionHandler: (([RSSItem]) -> Void)?
     
     func parseFeed(url: String, completionHandler: (([RSSItem]) -> Void)?) {
@@ -42,21 +48,12 @@ class FeedParser: NSObject, XMLParserDelegate {
         let urlSession = URLSession.shared
         let task = urlSession.dataTask(with: request) { (data, response, error) in
             
-//            guard error == nil else {
-//                DispatchQueue.main.sync {
-//                    let alertController = UIAlertController(title: "Network Error", message: "There was a network error: \(error!)", preferredStyle: .alert)
-//                    let actionOne = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//                    alertController.addAction(actionOne)
-//                    self.present(alertController, animated: true, completion: nil)
-//                }
-//                return
-//            }
-            
             guard let data = data else {
                 print(error!.localizedDescription)
 //        TODO: implement alert controller
                 return
             }
+            
             let parser = XMLParser(data: data)
             parser.delegate = self
             parser.parse()
@@ -71,6 +68,7 @@ class FeedParser: NSObject, XMLParserDelegate {
         currentElement = elementName
         if currentElement == "item" { // item is a key in the xml doc
             currentTitle = ""
+            currentLink = ""
             currentDescription = ""
             currentPubDate = ""
             
@@ -83,6 +81,8 @@ class FeedParser: NSObject, XMLParserDelegate {
         switch currentElement {
         case "title": // title is the key
             currentTitle += string
+        case "link":
+            currentLink += string
         case "description":
             currentDescription += string
         case "pubDate":
@@ -96,7 +96,7 @@ class FeedParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
         if elementName == "item" {
-            let rssItem = RSSItem(title: currentTitle, description: currentDescription, pubDate: currentPubDate)
+            let rssItem = RSSItem(title: currentTitle, link: currentLink, description: currentDescription, pubDate: currentPubDate)
             self.rssItems.append(rssItem)
         }
     }

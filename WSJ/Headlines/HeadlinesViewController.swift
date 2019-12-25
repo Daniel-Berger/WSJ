@@ -12,6 +12,7 @@ class HeadlinesViewController: UIViewController, XMLParserDelegate {
 
     @IBOutlet weak var headlinesTableView: UITableView!
     var selectedArticleURL = ""
+    var selectedArticleLink = ""
     private var rssItems: [RSSItem]?
     
     override func viewDidLoad() {
@@ -36,6 +37,17 @@ class HeadlinesViewController: UIViewController, XMLParserDelegate {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "article segue" {
+            if let destVC = segue.destination as? ArticleViewController {
+//                destVC.articleSelectedURL = "https://wsj.com/"
+                print("selectedArticleURL: \(selectedArticleURL)")
+                print("selectedArticleLink: \(selectedArticleLink)")
+                destVC.articleSelectedURL = selectedArticleLink
+            }
+        }
+    }
 
 }
 
@@ -57,12 +69,22 @@ extension HeadlinesViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "headlines cell", for: indexPath) as! HeadlinesTableViewCell
         if let item = rssItems?[indexPath.item] {
             cell.item = item
+        
+//            selectedArticleLink = cell.item.link
+//            print("1- selectedArticleLink: \(selectedArticleLink)")
+//            let cellLink = cell.linkLabel.text
+//            print("2- cellLink: \(cellLink)")
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let selectedCell = tableView.cellForRow(at: indexPath) as? HeadlinesTableViewCell
+        let selectedCellLink = selectedCell?.linkLabel.text
+        print("3- selectedCellLink: \(selectedCellLink)")
+        selectedArticleLink = selectedCell!.linkLabel.text!
         performSegue(withIdentifier: "article segue", sender: nil)
     }
 }

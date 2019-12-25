@@ -12,7 +12,7 @@ import WebKit
 class ArticleViewController: UIViewController {
     
     var webView: WKWebView!
-    var articleSelectedURL = "https://wsj.com/"
+    var articleSelectedURL = ""
     var progressView: UIProgressView!
 
     override func viewDidLoad() {
@@ -31,8 +31,8 @@ class ArticleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
-        let countryURL = URL(string: articleSelectedURL)
-        let webRequest = URLRequest(url: countryURL!)
+        let articleURL = URL(string: articleSelectedURL)
+        let webRequest = URLRequest(url: articleURL!)
         webView.load(webRequest)!
     }
     

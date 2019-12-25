@@ -19,11 +19,11 @@ class WSJEndpointString {
     let lifestyleRSS = "https://feeds.a.dj.com/rss/RSSLifestyle.xml"
 }
 
-enum WSJEndpoints {
-    case opinionRSS
-    case worldNewsRSS
-    case usBusinessRSS
-    case marketNewsRSS
-    case technologyRSS
-    case lifestyleRSS
-}
+//enum WSJEndpoints {
+//    case opinionRSS
+//    case worldNewsRSS
+//    case usBusinessRSS
+//    case marketNewsRSS
+//    case technologyRSS
+//    case lifestyleRSS
+//}
