@@ -12,7 +12,7 @@ class SectionsViewController: UIViewController {
     
     @IBOutlet weak var sectionTableView: UITableView!
      var sections: [Section] = []
-    var rowSelected = ""
+    private var rowSelected: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +44,35 @@ class SectionsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "headlines segue" {
-            
+            if let destVC = segue.destination as? HeadlinesViewController {
+                destVC.selectedArticleURL = getHeadlinesURL(rowSelected: rowSelected!)
+            }
         }
+    }
+    
+    private func getHeadlinesURL(rowSelected: Int) -> String {
+        var resultString = "test"
+        
+        switch rowSelected {
+        case 0:
+            resultString = WSJEndpointString().opinionRSS
+        case 1:
+            resultString = WSJEndpointString().worldNewsRSS
+        case 2:
+            resultString = WSJEndpointString().usBusinessRSS
+        case 3:
+            resultString = WSJEndpointString().marketNewsRSS
+        case 4:
+            resultString = WSJEndpointString().technologyRSS
+        case 5:
+            resultString = WSJEndpointString().lifestyleRSS
+        default:
+            let alertController = UIAlertController(title: "Bad Selection", message: "Please select another row", preferredStyle: .alert)
+            let actionOne = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(actionOne)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        return resultString
     }
     
 }
@@ -68,6 +95,7 @@ extension SectionsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        self.rowSelected = indexPath.row
         performSegue(withIdentifier: "headlines segue", sender: nil)
     }
 }

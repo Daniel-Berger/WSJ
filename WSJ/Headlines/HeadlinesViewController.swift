@@ -11,7 +11,7 @@ import UIKit
 class HeadlinesViewController: UIViewController, XMLParserDelegate {
 
     @IBOutlet weak var headlinesTableView: UITableView!
-    
+    var selectedArticleURL = ""
     private var rssItems: [RSSItem]?
     
     override func viewDidLoad() {
@@ -19,21 +19,14 @@ class HeadlinesViewController: UIViewController, XMLParserDelegate {
         
         self.headlinesTableView.dataSource = self
         self.headlinesTableView.delegate = self
-//        urlTest()
-        
-        let wsjRssFeeds = WSJEndpoints()
-//        fetchData(url: wsjRssFeeds.lifestyleRSS)
-//        fetchData(url: wsjRssFeeds.opinionRSS)
-//        fetchData(url: wsjRssFeeds.worldNewsRSS)
-//        fetchData(url: wsjRssFeeds.usBusinessRSS)
-//        fetchData(url: wsjRssFeeds.marketNewsRSS)
-        fetchData(url: wsjRssFeeds.technologyRSS)
+        fetchData(url: selectedArticleURL)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
     }
-    
+   
     private func fetchData(url: String) {
         let feedParser = FeedParser()
         feedParser.parseFeed(url: url) { (rssItems) in
@@ -43,32 +36,6 @@ class HeadlinesViewController: UIViewController, XMLParserDelegate {
             }
         }
     }
- 
-/*
-    func urlTest() {
-        let url = URL(string: "https://feeds.a.dj.com/rss/RSSOpinion.xml")!
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            guard error == nil else {
-                DispatchQueue.main.sync {
-                    let alertController = UIAlertController(title: "Network Error", message: "There was a network error: \(error!)", preferredStyle: .alert)
-                    let actionOne = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                    alertController.addAction(actionOne)
-                    self.present(alertController, animated: true, completion: nil)
-                }
-                return
-            }
-            
-            guard let data = data else {
-                print("no data")
-                return
-            }
-            print("data was success: \(data)")
-        }
-        task.resume()
-    }
- */
 
 }
 
