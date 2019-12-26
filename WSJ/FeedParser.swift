@@ -41,6 +41,7 @@ class FeedParser: NSObject, XMLParserDelegate {
     }
     private var parserCompletionHandler: (([RSSItem]) -> Void)?
     
+    // network request for the data
     func parseFeed(url: String, completionHandler: (([RSSItem]) -> Void)?) {
         self.parserCompletionHandler = completionHandler
         
@@ -53,7 +54,6 @@ class FeedParser: NSObject, XMLParserDelegate {
 //        TODO: implement alert controller
                 return
             }
-            
             let parser = XMLParser(data: data)
             parser.delegate = self
             parser.parse()
@@ -71,7 +71,6 @@ class FeedParser: NSObject, XMLParserDelegate {
             currentLink = ""
             currentDescription = ""
             currentPubDate = ""
-            
         }
     }
     
@@ -101,10 +100,12 @@ class FeedParser: NSObject, XMLParserDelegate {
         }
     }
     
+    // gets called when the parser reached the end of the document
     func parserDidEndDocument(_ parser: XMLParser) {
         parserCompletionHandler?(rssItems)
     }
     
+    // parsing error handling
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         print("Parse error: \(parseError.localizedDescription)")
 //        TODO: implement alert controller

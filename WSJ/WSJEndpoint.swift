@@ -10,7 +10,7 @@
 import Foundation
 
 class WSJEndpointString {
-    // URL(string: <#T##String#>, relativeTo: <#T##URL?#>)
+    // TODO: URL(string: <#T##String#>, relativeTo: <#T##URL?#>)
     let opinionRSS = "https://feeds.a.dj.com/rss/RSSOpinion.xml"
     let worldNewsRSS = "https://feeds.a.dj.com/rss/RSSWorldNews.xml"
     let usBusinessRSS = "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml"
@@ -18,12 +18,3 @@ class WSJEndpointString {
     let technologyRSS = "https://feeds.a.dj.com/rss/RSSWSJD.xml"
     let lifestyleRSS = "https://feeds.a.dj.com/rss/RSSLifestyle.xml"
 }
-
-//enum WSJEndpoints {
-//    case opinionRSS
-//    case worldNewsRSS
-//    case usBusinessRSS
-//    case marketNewsRSS
-//    case technologyRSS
-//    case lifestyleRSS
-//}

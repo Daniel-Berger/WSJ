@@ -51,7 +51,7 @@ class SectionsViewController: UIViewController {
     }
     
     private func getHeadlinesURL(rowSelected: Int) -> String {
-        var resultString = "test"
+        var resultString = ""
         
         switch rowSelected {
         case 0:
